@@ -1,0 +1,120 @@
+﻿@using WebsiteBanHang.Areas.User.Models;
+@using PagedList.Mvc;
+@model  PagedList.PagedList<SanPham>
+@{
+    ViewBag.Title = "XemLoaiLap";
+    Layout = "~/Areas/User/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        iPhone <span class="primary">6 <strong>Plus</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Dual SIM</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide2.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        by one, get one <span class="primary">50% <strong>off</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide3.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Select Item</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide4.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">& Phone</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- ./Slider -->
+</div>
+
+@* Chen vao partial the loai laptop*@
+@Html.Action("PatialLoaiLaptop", "LoaiLaptop");
+
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @{
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-shop-product">
+                            <div class="product-upper">
+                                <img src="~/Areas/Admin/Content/Photo/@item.AnhBia" alt="" style="height:300px; width: 300px;">
+                            </div>
+                            <h2><a href="@Url.Action("XemChiTiet","Laptop",new {@malap = item.MaLap })">@item.TenLap</a></h2>
+                            <div class="product-carousel-price">
+                                <ins>@item.GiaBan </ins>
+                            </div>
+
+                            <div class="product-option-shop">
+                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+@*    <div>
+        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+            @Html.PagedListPager(Model, PageNum => Url.Action("XemLoaiLap", new { PageNum }))
+        </div>
+    </div>*@
+
+</div> <!-- End product widget area -->
+<div>
+    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate" style=" margin-left: 90px;">
+        @Html.PagedListPager(Model, PageNum => Url.Action("XemLoaiLap", new { PageNum, @Maloai = ViewBag.Ml }))
+    </div>
+</div>
+
+<!-- End product widget area -->
+<style>
+    /* thiết lập style cho thẻ a */
+    .pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+    /* thiết lập style cho class active */
+    .pagination li.active a {
+        background-color: dodgerblue;
+        color: white;
+    }
+    /* thêm màu nền khi người dùng hover vào class không active */
+    .pagination li:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>

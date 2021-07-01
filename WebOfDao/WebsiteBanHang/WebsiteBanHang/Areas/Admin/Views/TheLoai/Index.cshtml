@@ -1,0 +1,100 @@
+﻿@model PagedList.IPagedList<WebsiteBanHang.Areas.Admin.Models.Entites.TheLoai>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản Lý Loại Máy</h2>
+
+<form action="Index" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <input  type="text" placeholder="Search"  name="timkiem">
+        </div>
+
+
+        <div class="col-md-2">
+            <button type="submit">Tim kiếm </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            
+            <!-- /.card-header -->
+            <div class="card-body">
+                <p>
+                    @Html.ActionLink("Thêm mới", "Create")
+                </p>
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã Máy
+                            </th>
+                            <th>
+                                Tên Loại Máy
+                            </th>
+                            <th>
+                                Chức Năng
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenLoai)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaLoai }) |
+                            @*     @Html.ActionLink("Delete", "Delete", new { id = item.MaLap })*@
+                            <a href="~/Admin/TheLoai/Delete/@item.MaLoai" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                <span>Xóa</span>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+
+                </table>
+                <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum }))
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    <!-- /.card -->
+</div>
+<!-- /.col -->
+<style>
+
+    /* thiết lập style cho thẻ a */
+    .pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+    /* thiết lập style cho class active */
+    .pagination li.active a {
+        background-color: dodgerblue;
+        color: white;
+    }
+    /* thêm màu nền khi người dùng hover vào class không active */
+    .pagination li:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>
+

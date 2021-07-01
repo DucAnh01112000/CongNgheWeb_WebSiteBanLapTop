@@ -1,0 +1,117 @@
+﻿@using WebsiteBanHang.Areas.User.Models;
+@model List<SanPham>
+
+<h2 class="section-title">Sản phẩm mới</h2>
+<div class="product-carousel">
+
+    @{
+        foreach (var item in Model)
+        {
+            <div class="single-product">
+                <div class="product-f-image">
+                    <img src="~/Areas/Admin/Content/Photo/@item.AnhBia" style="width: 212px; height: 264px;" alt="">
+                    <div class="product-hover">
+                        <a  href="@Url.Action("ThemSanPham", "GioHang", new { @masp = item.MaLap ,@strUrl = Request.Url.ToString()})" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                        <a href="@Url.Action("XemChiTiet",new {@malap = item.MaLap })" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                    </div>
+                </div>
+
+                <h2><a href="single-product.html">@item.TenLap</a></h2>
+
+                <div class="product-carousel-price">
+                    <ins>@string.Format("{0:0,0}", item.GiaBan) VND</ins> 
+                </div>
+            </div>
+        }
+    }
+
+    @*    <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-1.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2><a href="single-product.html">Samsung Galaxy s5- 2015</a></h2>
+
+            <div class="product-carousel-price">
+                <ins>$700.00</ins> <del>$100.00</del>
+            </div>
+        </div>
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-2.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2>Nokia Lumia 1320</h2>
+            <div class="product-carousel-price">
+                <ins>$899.00</ins> <del>$999.00</del>
+            </div>
+        </div>
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-3.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2>LG Leon 2015</h2>
+
+            <div class="product-carousel-price">
+                <ins>$400.00</ins> <del>$425.00</del>
+            </div>
+        </div>
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-4.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2><a href="single-product.html">Sony microsoft</a></h2>
+
+            <div class="product-carousel-price">
+                <ins>$200.00</ins> <del>$225.00</del>
+            </div>
+        </div>
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-5.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2>iPhone 6</h2>
+
+            <div class="product-carousel-price">
+                <ins>$1200.00</ins> <del>$1355.00</del>
+            </div>
+        </div>
+        <div class="single-product">
+            <div class="product-f-image">
+                <img src="~/Areas/User/Content/img/product-6.jpg" alt="">
+                <div class="product-hover">
+                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                </div>
+            </div>
+
+            <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+
+            <div class="product-carousel-price">
+                <ins>$400.00</ins>
+            </div>
+        </div>*@
+</div>

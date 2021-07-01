@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<WebsiteBanHang.Areas.Admin.Models.Entites.SanPham>
+@using PagedList.Mvc;`
+
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+}
+
+<h2>KetQuaTimKiem</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","Product")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HangSX.TenHangSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TheLoai.TenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TenLap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().GiaBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AnhBia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NgayCapNhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SoLuongTon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.HangSX.TenHangSX)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TheLoai.TenLoai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenLap)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GiaBan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MoTa)
+    </td>
+    <td>
+        <img height="50px" src="~/Areas/Admin/Content/Photo/@item.AnhBia" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SoLuongTon)
+    </td>
+    <td>
+@*        @Html.ActionLink("Edit", "Edit", new { id = item.MaLap })*@
+        <a href="~/Admin/Product/Edit/@item.MaLap">
+            <span>Edit</span>
+        </a>
+        @*     @Html.ActionLink("Delete", "Delete", new { id = item.MaLap })*@
+        <a href="~/Admin/Product/Delete/@item.MaLap" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+            <span>Delete</span>
+        </a>
+    </td>
+</tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, PageNum => Url.Action("KetQuaTimKiem", new { PageNum }))

@@ -1,0 +1,120 @@
+﻿@using WebsiteBanHang.Areas.User.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
+
+@{
+    ViewBag.Title = "XemHangSanXuat";
+    Layout = "~/Areas/User/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        iPhone <span class="primary">6 <strong>Plus</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Dual SIM</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide2.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        by one, get one <span class="primary">50% <strong>off</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide3.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Select Item</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Areas/User/Content/img/h4-slide4.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">& Phone</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- ./Slider -->
+</div> <!-- End slider area -->
+@* Chen vao partial the loai laptop*@
+@Html.Action("PatialLoaiLaptop", "LoaiLaptop");
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="latest-product">
+                    @* Chèn vào partial view sản phẩm mới  *@
+                    @Html.Action("PatialSanPhamMoi", "Laptop");
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End main content area -->
+
+<div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @* Patial hang laptop*@
+            @Html.Action("PatialHangLaptop", "HangSanXuat");
+        </div>
+    </div>
+</div> <!-- End brands area -->
+
+
+
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @{
+                foreach (var item in Model)
+                {
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-shop-product">
+                                <div class="product-upper">
+                                    <img src="~/Areas/Admin/Content/Photo/@item.AnhBia" alt="">
+                                </div>
+                                <h2><a href="@Url.Action("XemChiTiet","Laptop",new {@malap = item.MaLap })">@item.TenLap</a></h2>
+                                <div class="product-carousel-price">
+                                    <ins>@item.GiaBan VNDs</ins>
+                                </div>
+
+                                <div class="product-option-shop">
+                                    <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+    </div>
+
+</div> <!-- End product widget area -->
+<div>
+    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate" style=" margin-left: 90px;">
+        @Html.PagedListPager(Model, PageNum => Url.Action("XemHangSanXuat", new { PageNum, @MaHang = ViewBag.Mh }))
+    </div>
+</div>

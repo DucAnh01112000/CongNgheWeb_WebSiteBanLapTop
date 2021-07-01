@@ -1,0 +1,14 @@
+﻿@using WebsiteBanHang.Areas.User.Models;
+@model List<HangSX>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <div class="single-promo promo1">
+                <i class="fa fa-laptop"></i>
+                <a style="font-family: Arial, Helvetica, sans-serif; font-size: larger;" href="@Url.Action("XemHangSanXuat", new {@MaHang = item.MaHangSX })">@item.TenHangSX</a>
+            </div>
+        </div>
+    }
+}

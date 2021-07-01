@@ -1,0 +1,24 @@
+﻿@using WebsiteBanHang.Areas.User.Models;
+@model List<TheLoai>
+
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @{
+                foreach (var item in Model)
+                {
+                    
+                    <div class="col-md-3 col-sm-6">  
+                        
+                                        <div class="single-promo promo1">                                         
+                                            <i class="fa fa-laptop"></i>
+                                            <a href="@Url.Action("XemLoaiLap",new {@Maloai = item.MaLoai })"> @item.TenLoai </a>
+                                        </div>                              
+                    </div>
+                }
+            } 
+        
+        </div>
+    </div>
+</div> <!-- End promo area -->

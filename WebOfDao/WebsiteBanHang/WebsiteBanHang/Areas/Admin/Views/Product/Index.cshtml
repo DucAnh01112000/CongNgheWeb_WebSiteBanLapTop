@@ -1,0 +1,159 @@
+﻿@model  PagedList.IPagedList<WebsiteBanHang.Areas.Admin.Models.Entites.SanPham>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản Lý Sản Phẩm</h2>
+<form action="Index" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <input  type="text" placeholder="Search" name="timkiem">
+        </div>
+        <div class="col-md-2">
+            <select name="HangSX">
+                <option value="1">Chọn hãng sản xuất</option>
+                <option value="Dell">Dell</option>
+                <option value="HP"> HP </option>
+                <option value="ASUS"> ASUS</option>
+                <option value="Macbook">Macbook</option>
+                <option value="ThinkPad"> ThinkPad</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="PhanLoai">
+                <option value="1">Chọn loại Laptop theo nhu cầu</option>
+                <option value="Doanh Nhân">Doanh Nhân</option>
+                <option value="Cá Nhân"> Cá Nhân</option>
+                
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select name="KhoangGia">
+                <option value="0">Tất cả</option>
+                <option value="1">Từ 10 triệu -> 20 triệu</option>
+                <option value="2">Từ 20 triệu -> 30 triệu</option>
+                <option value="3">Từ 30 triệu -> 40 triệu</option>
+                <option value="4">Từ 40 triệu -> 50 triệu</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit">Tim kiếm </button>
+        </div>
+    </div>
+</form>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+               
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <p>
+                        @Html.ActionLink("Thêm mới", "Create")
+                    </p>
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nhà Sản Xuất
+                                </th>
+                                <th>
+                                    Loại Sản Phẩm
+                               </th>
+                                <th>
+                                    Tên Sản Phẩm
+                                </th>
+                                <th>
+                                    Giá Bán
+                                </th>
+                                <th>
+                                    Mô Tả
+                                </th>
+                                <th>
+                                    Ảnh Bìa
+                                </th>
+                                <th>
+                                    Ngày Cập Nhập 
+                                </th>
+                                <th>
+                                    Số Lượng
+                                </th>
+                                <th>
+                                    Chức Năng
+                                </th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HangSX.TenHangSX)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TheLoai.TenLoai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenLap)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GiaBan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MoTa)
+                                </td>
+                                <td>
+                                    <img height="50px" src="~/Areas/Admin/Content/Photo/@item.AnhBia" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaLap }) |
+                                    @*     @Html.ActionLink("Delete", "Delete", new { id = item.MaLap })*@
+                                    <a href="~/Admin/Product/Delete/@item.MaLap" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                        <span>Xóa</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <style>
+
+        /* thiết lập style cho thẻ a */
+        .pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+        /* thiết lập style cho class active */
+        .pagination li.active a {
+            background-color: dodgerblue;
+            color: white;
+        }
+        /* thêm màu nền khi người dùng hover vào class không active */
+        .pagination li:hover:not(.active) {
+            background-color: #ddd;
+        }
+    </style>
